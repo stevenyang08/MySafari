@@ -51,8 +51,15 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="rl2-Yd-9kr"/>
                                 </connections>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edC-Qj-j3H">
+                                <rect key="frame" x="173" y="523" width="58" height="30"/>
+                                <state key="normal" title="RELOAD"/>
+                                <connections>
+                                    <action selector="reloadButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uza-cm-IFG"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3C9-87-3fG">
-                                <rect key="frame" x="137" y="523" width="48" height="30"/>
+                                <rect key="frame" x="93" y="523" width="48" height="30"/>
                                 <state key="normal" title="STOP"/>
                                 <connections>
                                     <action selector="stopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DHy-HZ-p0e"/>

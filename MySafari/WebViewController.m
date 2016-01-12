@@ -52,6 +52,9 @@
     [self.webView stopLoading];
 }
 
+- (IBAction)reloadButton:(UIButton *)sender {
+    [self.webView reload];
+}
 
 /*
 #pragma mark - Navigation
