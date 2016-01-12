@@ -12,6 +12,10 @@
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *stopButton;
+@property (weak, nonatomic) IBOutlet UIButton *reloadButton;
+@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
 
 @end
 
@@ -19,6 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 //    [self.urlTextField becomeFirstResponder]; 
 }
 
@@ -34,22 +39,49 @@
     
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)urlTextField{
-    NSURL *url = [NSURL URLWithString:self.urlTextField.text];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+- (BOOL)textFieldShouldReturn:(UITextField *)urlTextField
+{
+    if ([self.urlTextField.text hasPrefix:@"http://"])
+    {
+        NSURL *url = [NSURL URLWithString:self.urlTextField.text];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    }
+    else
+    {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", self.urlTextField.text]];
+        [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+    }
+
+
 
     return YES;
 };
-- (IBAction)backButton:(id)sender {
-    [self.webView goBack];
+- (IBAction)backButton:(id)sender
+{
+    if (self.webView.canGoBack)
+    {
+        [self.webView goBack];
+    }
+    else
+    {
+        self.backButton.enabled = NO;
+    }
 }
 
 - (IBAction)forwardButton:(id)sender {
-    [self.webView goForward];
+    if (self.webView.canGoForward)
+    {
+        [self.webView goForward];
+    }
+    else
+    {
+        self.forwardButton.enabled = NO;
+    }
 }
 
 - (IBAction)stopButton:(UIButton *)sender {
     [self.webView stopLoading];
+    //
 }
 
 - (IBAction)reloadButton:(UIButton *)sender {

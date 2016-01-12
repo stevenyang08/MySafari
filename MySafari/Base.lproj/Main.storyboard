@@ -74,6 +74,10 @@
                     </view>
                     <connections>
                         <outlet property="activityIndicator" destination="mYe-qO-vjE" id="VZd-aa-XAN"/>
+                        <outlet property="backButton" destination="VGo-Mc-682" id="F5Z-yQ-QuL"/>
+                        <outlet property="forwardButton" destination="HvB-PQ-Qob" id="KMO-uw-5cw"/>
+                        <outlet property="reloadButton" destination="edC-Qj-j3H" id="LY2-aJ-7YY"/>
+                        <outlet property="stopButton" destination="3C9-87-3fG" id="aS9-Ke-0pY"/>
                         <outlet property="urlTextField" destination="VwW-gh-HMi" id="0em-ba-AdM"/>
                         <outlet property="webView" destination="fzk-nJ-RrQ" id="0He-48-t9H"/>
                     </connections>
