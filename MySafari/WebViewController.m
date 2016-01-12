@@ -48,6 +48,9 @@
     [self.webView goForward];
 }
 
+- (IBAction)stopButton:(UIButton *)sender {
+    [self.webView stopLoading];
+}
 
 
 /*
