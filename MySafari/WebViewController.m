@@ -24,15 +24,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // set initial state of buttons
+    self.backButton.enabled = NO;
+    self.forwardButton.enabled = NO;
+    self.stopButton.enabled = NO;
+    self.reloadButton.enabled = NO;
+    
 //    [self.urlTextField becomeFirstResponder]; 
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
     [self.activityIndicator startAnimating];
+    self.stopButton.enabled = YES;
+    self.reloadButton.enabled = YES;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [self.activityIndicator stopAnimating];
+    [self updateButtons];
+    self.stopButton.enabled = NO;
+    
+}
+
+- (void)updateButtons{
+    // back button
+    if (self.webView.canGoBack)
+    {
+        self.backButton.enabled = YES;
+        
+    }
+    else
+    {
+        self.backButton.enabled = NO;
+    }
+    
+    // forward button
+    if (self.webView.canGoForward)
+    {
+        self.forwardButton.enabled = YES;
+        
+    }
+    else
+    {
+        self.forwardButton.enabled = NO;
+    }
+    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -53,30 +89,33 @@
     }
 
 
-
     return YES;
 };
+- (IBAction)newFeatureButton:(id)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Comming Soon!"
+                                                                             message:nil
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:@"OK"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             //cancel
+                                                         }];
+    [alertController addAction:cancelButton];
+    
+    [self presentViewController:alertController
+                       animated:YES
+                     completion:nil];
+
+}
+
 - (IBAction)backButton:(id)sender
 {
-    if (self.webView.canGoBack)
-    {
-        [self.webView goBack];
-    }
-    else
-    {
-        self.backButton.enabled = NO;
-    }
+    [self.webView goBack];
 }
 
 - (IBAction)forwardButton:(id)sender {
-    if (self.webView.canGoForward)
-    {
-        [self.webView goForward];
-    }
-    else
-    {
-        self.forwardButton.enabled = NO;
-    }
+    [self.webView goForward];
 }
 
 - (IBAction)stopButton:(UIButton *)sender {
